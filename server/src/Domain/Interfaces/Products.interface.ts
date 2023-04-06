@@ -11,6 +11,6 @@ export interface IReqBody {
 }
 
 enum Web {
-  mercado_livre = 'https://lista.mercadolivre.com.br/',
+  mercado_livre = 'https://api.mercadolibre.com/sites/MLB/search?q=',
   buscape = 'https://www.buscape.com.br/'
 }

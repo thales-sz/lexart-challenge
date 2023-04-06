@@ -12,8 +12,8 @@ export default class ProductService {
     const productODM = new ProductODM()
 
     const response = await productODM.getProducts(body)
-
-    if (response) {
+    console.log(response)
+    if (response[0]) {
       const productsList = response.map((product: IProduct) => this.productDomain(product))
 
       return productsList
