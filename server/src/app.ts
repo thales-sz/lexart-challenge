@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import type { Application, Request, RequestHandler, Response } from 'express'
 import { rateLimit } from 'express-rate-limit'
+import ErrorHandler from './Middleware/ErrorHandler.middleware'
 
 class App {
   public app: Application
@@ -10,6 +11,7 @@ class App {
     this.app = express()
     this.config()
     this.app.get('/ping', (_req: Request, res: Response) => res.json({ message: 'pong' }))
+    this.app.use(new ErrorHandler().handle)
   }
 
   private config (): void {

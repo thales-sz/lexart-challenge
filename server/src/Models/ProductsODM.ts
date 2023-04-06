@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose'
-import type IProduct from '../Interfaces/Products.interface'
+import type IProduct from '../Domain/Interfaces/Products.interface'
 import AbstractODM from './AbstractODM'
 
 class ProductODM extends AbstractODM<IProduct> {
