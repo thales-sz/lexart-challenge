@@ -6,7 +6,7 @@
   "extends": "standard-with-typescript",
   "overrides": [],"settings": {},
   "parserOptions": {
-    "project": ["./src"],
+    "project": ["./server/tsconfig.json"],
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
