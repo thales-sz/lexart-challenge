@@ -1,40 +1,25 @@
 import Product from '../Product'
 import type IProduct from '../Interfaces/Products.interface'
-import ProductODM from '../../Models/ProductsODM'
+import ProductODM from '../../Models/'
+import type { IReqBody } from '../Interfaces/Products.interface'
 
 export default class ProductService {
   private productDomain (product: IProduct): Product {
     return new Product(product)
   }
 
-  public async create (newProduct: IProduct): Promise<Product> {
+  public async create (body: IReqBody): Promise<Product[]> {
     const productODM = new ProductODM()
 
-    const response = await productODM.create(newProduct)
+    const response = await productODM.getProducts(body)
 
-    const product = this.productDomain(response)
+    if (response) {
+      const productsList = response.map((product: IProduct) => this.productDomain(product))
 
-    return product
-  }
+      return productsList
+    }
 
-  public async get (): Promise<Product[]> {
-    const productODM = new ProductODM()
+    const newResponse = await this.fetchWeb(body)
 
-    const response = await productODM.get()
-
-    const productsList = response.map((Product) => this.productDomain(Product))
-
-    return productsList
-  }
-
-  public async getById (id: string): Promise<Product | boolean> {
-    const productODM = new ProductODM()
-
-    const response = await productODM.getById(id)
-
-    if (!response) throw new Error('NotFoundError')
-
-    const product = this.productDomain(response)
-    return product
   }
 }

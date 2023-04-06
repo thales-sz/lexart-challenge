@@ -1,5 +1,6 @@
 import type { Model, Schema } from 'mongoose'
 import { model, models } from 'mongoose'
+import { type IReqBody } from '../Domain/Interfaces/Products.interface'
 
 abstract class AbstractODM<T> {
   protected model: Model<T>
@@ -16,12 +17,16 @@ abstract class AbstractODM<T> {
     return await this.model.create({ ...obj })
   }
 
-  public async get (): Promise<T[]> {
-    return await this.model.find()
+  public async getProducts ({ category, web }: IReqBody): Promise<T[]> {
+    return await this.model.find({
+      category,
+      web
+    })
   }
 
-  public async getById (id: string): Promise<T | null> {
-    return await this.model.findById(id)
+  public async fetchWeb ({ category, web }: IReqBody): Promise<any> {
+    const url = `${web}/${category}`
+    const response = await 
   }
 }
 
