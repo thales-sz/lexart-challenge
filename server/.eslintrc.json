@@ -13,6 +13,7 @@
   "plugins": ["@typescript-eslint", "autofix"],
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
+    "@typescript-eslint/strict-boolean-expressions": 0,
     "autofix/no-unused-vars": [
       "error",
       {
