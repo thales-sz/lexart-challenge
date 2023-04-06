@@ -2,13 +2,13 @@ import 'dotenv/config'
 import { App } from './app'
 import connectToDatabase from './Models/Connection'
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT ?? 3001
 
 connectToDatabase()
   .then(() => {
     new App().start(PORT)
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.log('Connection with database generated an error:\r\n')
     console.error(error)
     console.log('\r\nServer initialization cancelled')
