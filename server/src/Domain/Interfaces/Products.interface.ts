@@ -6,6 +6,11 @@ export default interface IProduct extends IReqBody {
 }
 
 export interface IReqBody {
-  web: string
+  web: Web
   category: string
+}
+
+enum Web {
+  mercado_livre = 'https://lista.mercadolivre.com.br/',
+  buscape = 'https://www.buscape.com.br/'
 }

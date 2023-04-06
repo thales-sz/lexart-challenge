@@ -2,7 +2,10 @@ import type { Model, Schema } from 'mongoose'
 import { model, models } from 'mongoose'
 import { type IReqBody } from '../Domain/Interfaces/Products.interface'
 
+import axios from 'axios'
+
 abstract class AbstractODM<T> {
+  protected headers = { 'Content-Type': 'application/json' }
   protected model: Model<T>
   protected schema: Schema
   protected modelName: string
@@ -26,7 +29,14 @@ abstract class AbstractODM<T> {
 
   public async fetchWeb ({ category, web }: IReqBody): Promise<any> {
     const url = `${web}/${category}`
-    const response = await 
+
+    const { data } = await axios({
+      method: 'GET',
+      url,
+      headers: this.headers
+    })
+
+    return data
   }
 }
 

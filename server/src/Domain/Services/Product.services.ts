@@ -8,7 +8,7 @@ export default class ProductService {
     return new Product(product)
   }
 
-  public async create (body: IReqBody): Promise<Product[]> {
+  public async getProduct (body: IReqBody): Promise<Product[]> {
     const productODM = new ProductODM()
 
     const response = await productODM.getProducts(body)
@@ -19,7 +19,8 @@ export default class ProductService {
       return productsList
     }
 
-    const newResponse = await this.fetchWeb(body)
+    const newResponse = await productODM.fetchWeb(body)
 
+    return newResponse
   }
 }
