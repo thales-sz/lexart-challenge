@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import Dropdown from './dropdown'
+import { Context } from '../context/Context'
 
 const itensSite = ['Mercado Livre', 'Buscapé']
 const itensCategories = ['Geladeira', 'TV', 'Celular']
 
 export default function Header (): JSX.Element {
+  const value = useContext(Context)
   const [form, setForm] = useState({ web: '', category: '', inputText: '' })
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>): void => {
     event.preventDefault()
+    
   }
 
   const handleChange = ({ currentTarget: { name, value } }: React.FormEvent<HTMLInputElement>): void => {
