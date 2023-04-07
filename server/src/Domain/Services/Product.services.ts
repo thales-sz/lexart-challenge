@@ -2,13 +2,14 @@ import Product from '../Product'
 import type IProduct from '../Interfaces/Products.interface'
 import ProductODM from '../../Models/'
 import { load } from 'cheerio'
+import { type IReqBody } from '../Interfaces/Products.interface'
 
 export default class ProductService {
   private productDomain (product: IProduct): Product {
     return new Product(product)
   }
 
-  public async getProduct (body: IProduct): Promise<Product[]> {
+  public async getProduct (body: IReqBody): Promise<Product[]> {
     const productODM = new ProductODM()
 
     const response = await productODM.getProducts(body)
@@ -25,7 +26,7 @@ export default class ProductService {
     return await this.buscapeQuery(productODM, body)
   }
 
-  public async mercadoLivreQuery (productODM: ProductODM, body: IProduct): Promise<Product[]> {
+  public async mercadoLivreQuery (productODM: ProductODM, body: IReqBody): Promise<Product[]> {
     const fetchResponse = await productODM.fetchMercadoLivre(body)
 
     const result = await productODM.create(fetchResponse)
@@ -33,7 +34,7 @@ export default class ProductService {
     return result.map((product: IProduct) => this.productDomain(product))
   }
 
-  public async buscapeQuery (productODM: ProductODM, body: IProduct): Promise<Product[]> {
+  public async buscapeQuery (productODM: ProductODM, body: IReqBody): Promise<Product[]> {
     const productList: IProduct[] = []
     const fetchResponse = await productODM.fetchBuscape(body)
 

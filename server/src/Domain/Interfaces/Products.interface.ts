@@ -10,7 +10,7 @@ export interface IReqBody {
   category: string
 }
 
-enum Web {
+export enum Web {
   mercado_livre = 'https://api.mercadolibre.com/sites/MLB/search?q=',
   buscape = 'https://www.buscape.com.br/search?q='
 }
