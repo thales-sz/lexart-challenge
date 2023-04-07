@@ -3,13 +3,20 @@ import React from 'react'
 interface DropdownProps {
   name: string
   itens: string[]
+  selected: string
 }
 
-function Dropdown ({ name, itens }: DropdownProps): JSX.Element {
+function Dropdown ({ name, itens, selected }: DropdownProps): JSX.Element {
   return (
-    <div className="w-1/3">
-      <select className="w-1/2 p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-gray-600">
-        <option selected hidden>{name}</option>
+    <div className="w-1/5 text-center">
+      <label htmlFor="underline_select" className="sr-only" />
+      <select id="underline_select" className="block py-2.5 px-0 w-auto text-xl text-gray-600 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer mx-10"
+      value={selected}>
+        <option selected hidden>
+          {name === 'web' ? 'Selecionar site' : 'Selecionar categoria'}
+          {' '}
+          ↴
+        </option>
         {itens.map((item, index) => <option value={item} key={index}>{item}</option>)}
       </select>
     </div>
