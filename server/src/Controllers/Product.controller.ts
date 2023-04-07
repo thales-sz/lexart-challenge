@@ -1,6 +1,7 @@
 import { type NextFunction, type Request, type Response } from 'express'
 import ProductService from '../Domain/Services'
-import type { IReqBody } from '../Domain/Interfaces/Products.interface'
+
+import type IProduct from '../Domain/Interfaces/Products.interface'
 
 export default class ProductController {
   private readonly service: ProductService
@@ -10,7 +11,7 @@ export default class ProductController {
   }
 
   public async getProduct (): Promise<Response | undefined> {
-    const body: IReqBody = this.req.body
+    const body: IProduct = this.req.body
     try {
       const response = await this.service.getProduct(body)
 

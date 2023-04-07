@@ -1,6 +1,7 @@
 import type { Model, Schema } from 'mongoose'
 import { model, models } from 'mongoose'
-import { type IReqBody } from '../Domain/Interfaces/Products.interface'
+
+import { type IMlbReturn, type IReqBody } from '../Domain/Interfaces/Products.interface'
 
 import axios from 'axios'
 
@@ -16,18 +17,18 @@ abstract class AbstractODM<T> {
     this.model = models[this.modelName] || model(this.modelName, this.schema)
   }
 
-  public async create (obj: T): Promise<T> {
-    return await this.model.create({ ...obj })
+  public async create (obj: T[]): Promise<any> {
+    return await this.model.insertMany(obj)
   }
 
   public async getProducts ({ category, web }: IReqBody): Promise<T[]> {
-    return await this.model.find({
-      category,
-      web
-    })
+    return await this.model.find(
+      { $and: [{ category }, { web }] },
+      { category: 1, web: 1, price: 1, description: 1, _id: 1 }
+    )
   }
 
-  public async fetchWeb ({ category, web }: IReqBody): Promise<any> {
+  public async fetchWeb ({ category, web }: IReqBody): Promise<T[]> {
     const url = `${web}/${category}`
 
     const { data } = await axios({
@@ -36,7 +37,13 @@ abstract class AbstractODM<T> {
       headers: this.headers
     })
 
-    return data
+    return data.results.map((product: IMlbReturn) => ({
+      description: product.title,
+      price: product.price,
+      category,
+      image: product.thumbnail,
+      web
+    }))
   }
 }
 
