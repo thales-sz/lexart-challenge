@@ -5,15 +5,22 @@ import Dropdown from './dropdown'
 const itensSite = ['Mercado Livre', 'Buscapé']
 const itensCategories = ['Geladeira', 'TV', 'Celular']
 
-export default function Example (): JSX.Element {
+export default function Header (): JSX.Element {
   const [form, setForm] = useState({ web: '', category: '', inputText: '' })
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    console.log(event.currentTarget.value)
   }
 
   const handleChange = ({ currentTarget: { name, value } }: React.FormEvent<HTMLInputElement>): void => {
+    setForm({
+      ...form,
+      [name]: value
+    })
+  }
+
+  const handleChangeProp = ({ currentTarget: { name, value } }: React.ChangeEvent<HTMLSelectElement>): void => {
+    console.log('handleChangeProp', name, value)
     setForm({
       ...form,
       [name]: value
@@ -33,8 +40,8 @@ export default function Example (): JSX.Element {
         onChange={handleChange}
         value={form.inputText}
         name="inputText"/>
-        <Dropdown name='web' itens={itensSite} handleChange={handleChange} selected={form.web}/>
-        <Dropdown name='category' itens={itensCategories} handleChange={handleChange} selected={form.category}/>
+        <Dropdown name='web' itens={itensSite} selected={form.web} handleChange={handleChangeProp}/>
+        <Dropdown name='category' itens={itensCategories} selected={form.category} handleChange={handleChangeProp}/>
         <button className=' text-white flex w-60 justify-around text-xl text-center border rounded-md bg-gray-300 hover:bg-gray-500' type='submit'>
           <span className='mt-2 mx-3'>Pesquisar</span>
           <BiSearchAlt size={32} className='mt-2'/>
