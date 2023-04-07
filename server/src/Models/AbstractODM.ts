@@ -24,11 +24,11 @@ abstract class AbstractODM<T> {
   public async getProducts ({ category, web }: IReqBody): Promise<T[]> {
     return await this.model.find(
       { $and: [{ category }, { web }] },
-      { category: 1, web: 1, price: 1, description: 1, _id: 1 }
+      { image: 1, category: 1, web: 1, price: 1, description: 1 }
     )
   }
 
-  public async fetchWeb ({ category, web }: IReqBody): Promise<T[]> {
+  public async fetchMercadoLivre ({ category, web }: IReqBody): Promise<T[]> {
     const url = `${web}/${category}`
 
     const { data } = await axios({
@@ -44,6 +44,18 @@ abstract class AbstractODM<T> {
       image: product.thumbnail,
       web
     }))
+  }
+
+  public async fetchBuscape ({ category, web }: IReqBody): Promise<string> {
+    const url = `${web}/${category}`
+
+    const { data } = await axios({
+      method: 'GET',
+      url,
+      headers: this.headers
+    })
+
+    return data
   }
 }
 
