@@ -6,13 +6,8 @@ export default interface IProduct extends IReqBody {
 }
 
 export interface IReqBody {
-  web: Web
+  web: string
   category: string
-}
-
-export enum Web {
-  mercado_livre = 'https://api.mercadolibre.com/sites/MLB/search?q=',
-  buscape = 'https://www.buscape.com.br/search?q='
 }
 
 export interface IMlbReturn {

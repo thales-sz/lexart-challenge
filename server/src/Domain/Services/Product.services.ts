@@ -44,8 +44,9 @@ export default class ProductService {
       const price = parseFloat(page(item).find('[data-testid="product-card::price"]').text().replace('R$', '').replace(',', '.'))
       const description = page(item).find('[data-testid="product-card::name"]').text()
       const image = page(item).find('span > img').attr('src')
+      const link = page(item).find('[data-testid="product-card::card"]').attr('href') ?? ''
 
-      productList.push({ price, image, description, web: body.web, category: body.category })
+      productList.push({ price, image, description, web: `${body.web.replace('/search?q=', '')}${link}`, category: body.category })
     })
 
     const result = await productODM.create(productList.slice(0, 7))
