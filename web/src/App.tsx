@@ -4,6 +4,7 @@ import { Context } from './context/Context'
 import { type IProduct } from './context/Provider'
 import ProductCard from './components/productCard'
 import Loading from './components/loading'
+import Footer from './components/footer'
 
 function App (): JSX.Element {
   const { products, loading } = useContext(Context)
@@ -37,6 +38,7 @@ function App (): JSX.Element {
                 <span className='font-semibold text-2xl mt-3'>Selecione o site de pesquisa, categoria e digite o filtro no menu acima!</span>
               </div>}
         </section>
+        <Footer />
     </main>
   )
 }

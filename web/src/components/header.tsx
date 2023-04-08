@@ -58,7 +58,7 @@ export default function Header ({ input, handleFilter }: HeaderProps): JSX.Eleme
         name="inputText"/>
         <Dropdown name='web' itens={itensSite} selected={form.web} handleChange={handleChangeProp}/>
         <Dropdown name='category' itens={itensCategories} selected={form.category} handleChange={handleChangeProp}/>
-        <button className=' text-gray-200 flex w-60 justify-around text-xl text-center border rounded-md bg-gray-600 hover:bg-gray-500' type='submit'>
+        <button className='text-gray-200 flex w-60 justify-around text-xl text-center border rounded-md bg-gray-600 hover:bg-gray-500' type='submit'>
           <span className='mt-2 mx-3'>Pesquisar</span>
           <BiSearchAlt size={32} className='mt-2'/>
         </button>

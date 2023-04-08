@@ -12,7 +12,12 @@ function ProductCard ({ web, category, price, description, image }: IProduct): J
       <p>{description}</p>
       <p>R$ {price}</p>
       <p>Categoria: {category}</p>
-      <p>Site: {web.includes('mercado') ? 'Mercado Livre' : 'Buscapé'}</p>
+      <a className='text-gray-200 flex w-1/2 mx-auto p-1 justify-around text-xl text-center border rounded-md bg-gray-600 hover:bg-gray-500 mt-1'
+      target="_blank"
+      rel="noreferrer"
+      href={web}>
+        Ir para web
+      </a>
     </div>
   )
 }
