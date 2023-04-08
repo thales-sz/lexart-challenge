@@ -37,8 +37,6 @@ abstract class AbstractODM<T> {
       headers: this.headers
     })
 
-    console.log(data)
-
     return data.results.map((product: IMlbReturn) => ({
       description: product.title,
       price: product.price,
