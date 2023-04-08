@@ -4,6 +4,7 @@ import type { Application, Request, RequestHandler, Response } from 'express'
 import { rateLimit } from 'express-rate-limit'
 import ErrorHandler from './Middleware/ErrorHandler.middleware'
 import ProductRouter from './Routes'
+import 'dotenv/config'
 
 class App {
   public app: Application
@@ -25,7 +26,7 @@ class App {
     }
 
     const limiter = rateLimit({
-      windowMs: 15 * 60 * 1000, // 15 minutes
+      windowMs: 15 * 60 * 1000,
       max: 100,
       standardHeaders: true,
       legacyHeaders: false,
