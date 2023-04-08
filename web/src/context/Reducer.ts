@@ -11,7 +11,6 @@ export enum ActionTypes {
 }
 
 export const contextReducer = (state: IContext, { payload, type }: IDispatch): any => {
-  console.log(type, payload)
   switch (type) {
     case ActionTypes.toggleProducts:
       return {
