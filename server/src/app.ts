@@ -4,6 +4,7 @@ import type { Application, Request, RequestHandler, Response } from 'express'
 import { rateLimit } from 'express-rate-limit'
 import ErrorHandler from './Middleware/ErrorHandler.middleware'
 import ProductRouter from './Routes'
+import 'dotenv/config'
 
 class App {
   public app: Application

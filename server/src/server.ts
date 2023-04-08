@@ -3,7 +3,7 @@ import { App } from './app'
 import connectToDatabase from './Models/Connection'
 
 const PORT = process.env.PORT ?? 3001
-const MONGO_URL = process.env.MONGO_URL ?? 'mongodb+srv://dev:H4XubxdHDz9wfAkX@lexart-db.6iqadqd.mongodb.net/?retryWrites=true&w=majority'
+const MONGO_URL = process.env.MONGO_URL ?? 'string'
 
 connectToDatabase(MONGO_URL)
   .then(() => {
