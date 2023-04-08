@@ -49,7 +49,7 @@ export default class ProductService {
       productList.push({ price, image, description, web: body.web, category: body.category })
     })
 
-    const result = await productODM.create(productList.slice(0, 6))
+    const result = await productODM.create(productList.slice(0, 7))
 
     return result.map((product: IProduct) => this.productDomain(product))
   }
