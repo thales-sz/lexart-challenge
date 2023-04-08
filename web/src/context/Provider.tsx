@@ -25,8 +25,6 @@ export const defaultState = {
 function Provider ({ children }: IProps): JSX.Element {
   const [state, dispatch] = useReducer(contextReducer, { products: [defaultState], loading: false })
 
-  console.log(state)
-
   const toggleProducts = useCallback((body: IProduct[]) => {
     dispatch({
       type: ActionTypes.toggleProducts,
@@ -41,7 +39,6 @@ function Provider ({ children }: IProps): JSX.Element {
     })
   }, [dispatch])
 
-  console.log(state)
   return (
     <Context.Provider value={{ ...state, toggleLoading, toggleProducts }}>
       {children}
