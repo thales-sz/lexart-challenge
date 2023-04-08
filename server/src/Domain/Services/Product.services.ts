@@ -41,7 +41,6 @@ export default class ProductService {
     const page = load(fetchResponse)
 
     page('[data-testid="product-card"]').each((_index, item) => {
-      console.log(page(item).html())
       const price = parseFloat(page(item).find('[data-testid="product-card::price"]').text().replace('R$', '').replace(',', '.'))
       const description = page(item).find('[data-testid="product-card::name"]').text()
       const image = page(item).find('span > img').attr('src')
