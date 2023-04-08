@@ -1,16 +1,24 @@
-import { type Dispatch, createContext, type SetStateAction } from 'react'
+import { createContext } from 'react'
 import { type IProduct } from './Provider'
 
 export interface IContext {
   products: IProduct[]
-  setState?: Dispatch<SetStateAction<IContext>>
+  toggleProducts: (body: IProduct[]) => void
+  loading: boolean
+  toggleLoading: (bol: boolean) => void
 }
 
 const defaultState = {
   web: '',
   category: '',
   image: '',
-  description: ''
+  description: '',
+  price: 0
 }
 
-export const Context = createContext<Partial<IContext>>({ products: [defaultState] })
+export const Context = createContext<IContext>({
+  products: [defaultState],
+  toggleProducts: () => {},
+  loading: false,
+  toggleLoading: () => {}
+})
