@@ -17,7 +17,7 @@ export const requestForm = async (body: IReqBody): Promise<IProduct[]> => {
   console.log(body)
   const { data } = await axios({
     method: 'POST',
-    url: 'http://localhost:3001/product',
+    url: 'https://lexart-api.onrender.com/product',
     headers,
     data: {
       ...body
