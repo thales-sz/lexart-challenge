@@ -3,16 +3,15 @@ import { Model } from 'mongoose'
 import { expect, describe, afterAll, it } from 'vitest'
 import { productMock } from '../../Mocks/Produc.mock'
 import ProductService from '../../../Domain/Services'
-import { Web } from '../../../Domain/Interfaces/Products.interface'
 import Product from '../../../Domain/Product'
 
 const mercadoRequest = {
-  web: Web.mercado_livre,
+  web: 'https://api.mercadolibre.com/sites/MLB/search?q=',
   category: 'computador'
 }
 
 const buscapeRequest = {
-  web: Web.buscape,
+  web: 'https://www.buscape.com.br/search?q=',
   category: 'geladeira'
 }
 
