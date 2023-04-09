@@ -9,7 +9,8 @@ class ProductODM extends AbstractODM<IProduct> {
       description: { type: String, required: true },
       web: { type: String, required: true },
       price: { type: Number, required: true },
-      category: { type: String, required: true }
+      category: { type: String, required: true },
+      link: { type: String, required: true }
     })
     super(schema, 'Product')
   }

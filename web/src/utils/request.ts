@@ -11,12 +11,15 @@ export enum Web {
   buscape = 'https://www.buscape.com.br/search?q='
 }
 
+// const deployedAPI = 'https://lexart-api.onrender.com/product'
+const localAPI = 'http://localhost:3001/product'
+
 const headers = { 'Content-Type': 'application/json' }
 
 export const requestForm = async (body: IReqBody): Promise<IProduct[]> => {
   const { data } = await axios({
     method: 'POST',
-    url: 'https://lexart-api.onrender.com/product',
+    url: localAPI,
     headers,
     data: {
       ...body

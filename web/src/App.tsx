@@ -34,7 +34,7 @@ function App (): JSX.Element {
           {state[0] != null
             ? loading ? <Loading /> : filteredProducts.map((product, index) => <ProductCard key={index} {...product}/>)
             : <div className='text-gray-600 mt-20 flex flex-col justify-center text-center'>
-                <h2 className='font-bold text-6xl'>Bem vindo(a)!</h2>
+                <h2 className='font-bold text-6xl mt-6'>Bem vindo(a)!</h2>
                 <span className='font-semibold text-2xl mt-3'>Selecione o site de pesquisa, categoria e digite o filtro no menu acima!</span>
               </div>}
         </section>

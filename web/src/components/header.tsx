@@ -25,12 +25,15 @@ export default function Header ({ input, handleFilter }: HeaderProps): JSX.Eleme
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     toggleLoading(true)
+
     if (form.web.includes('Mercado')) {
+      toggleLoading(true)
       const data = await requestForm({ web: Web.mercado_livre, category: form.category })
       toggleProducts(data)
       toggleLoading(false)
       return
     }
+    toggleLoading(true)
     const data = await requestForm({ web: Web.buscape, category: form.category })
     toggleProducts(data)
     toggleLoading(false)
