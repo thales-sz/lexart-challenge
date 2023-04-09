@@ -46,10 +46,10 @@ export default class ProductService {
       const image = page(item).find('span > img').attr('src')
       const link = page(item).find('[data-testid="product-card::card"]').attr('href') ?? ''
 
-      productList.push({ price, image, description, web: `${body.web.replace('/search?q=', '')}${link}`, category: body.category })
+      productList.push({ price, image, description, web: `${body.web.replace('/search?q=', '')}${link}`, category: body.category, link: body.web })
     })
 
-    const result = await productODM.create(productList.slice(0, 7))
+    const result = await productODM.create(productList.slice(0, 6))
 
     return result.map((product: IProduct) => this.productDomain(product))
   }

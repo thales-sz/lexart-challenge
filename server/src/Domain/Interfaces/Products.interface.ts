@@ -3,6 +3,7 @@ export default interface IProduct extends IReqBody {
   image?: string
   description: string
   price: number
+  link: string
 }
 
 export interface IReqBody {

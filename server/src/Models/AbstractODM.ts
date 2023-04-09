@@ -23,7 +23,7 @@ abstract class AbstractODM<T> {
 
   public async getProducts ({ category, web }: IReqBody): Promise<T[]> {
     return await this.model.find(
-      { $and: [{ category }, { web }] },
+      { $and: [{ category }, { link: web }] },
       { image: 1, category: 1, web: 1, price: 1, description: 1 }
     )
   }
@@ -42,7 +42,8 @@ abstract class AbstractODM<T> {
       price: product.price,
       category,
       image: product.thumbnail,
-      web: product.permalink
+      web: product.permalink,
+      link: web
     }))
   }
 
